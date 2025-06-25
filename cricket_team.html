@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Blazing Titans - Fear the Fire, Face the Fury!</title>
+    <style>
+        .carousel-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .player-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+            transition: 0.3s ease-in-out;
+        }
+        .card-img-top {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .modal-body img {
+            height: 200px;
+            width: 200px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Carousel with Logo -->
+    <div id="carouselExample" class="carousel slide">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <nav class="navbar navbar-dark bg-danger p-0">
+                    <div class="container-fluid justify-content-center">
+                        <a class="navbar-brand" href="#">
+                            <img src="FullLogo_Transparent.png" alt="Logo" width="200" height="200">
+                        </a>
+                        <h1 class="text-white">Fear the Fire, Face the Fury!</h1>
+                    </div>
+                </nav>
+            </div>
+            <div class="carousel-item">
+                <img src="cricket_winning.webp" class="d-block w-100" alt="Slide">
+            </div>
+            <div class="carousel-item">
+                <img src="batball.jpg" class="d-block w-100" alt="Slide">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+    </div>
+
+    <!-- Players Grid -->
+    <div class="container text-center">
+        <h2 class="my-4">Meet the Blazing Titans</h2>
+        <div class="row g-4">
+
+            <!-- 11 Players Example -->
+            <script>
+                const players = [
+                    { name: "Virat Kohli", age: 35, type: "Batsman", dob: "15 Aug 1990", strikeRate: 135.6, matches: 85, jersey: 18, best: "125* vs Australia", color: "danger",src:"virat.jpg" },
+                    { name: "Ravichandran Ashwin", age: 37, type: "Bowler", dob: "17 Sep 1986", strikeRate: 95.0, matches: 80, jersey: 99, best: "7/59 vs SA", color: "primary",src:"ravi.jpg"  },
+                    { name: "Rohit Sharma", age: 36, type: "Batsman", dob: "30 Apr 1987", strikeRate: 140.2, matches: 95, jersey: 45, best: "264 vs SL", color: "primary",src:"rohit.jpg" },
+                    { name: "Jasprit Bumrah", age: 29, type: "Bowler", dob: "6 Dec 1993", strikeRate: 90.0, matches: 60, jersey: 93, best: "6/19 vs WI", color: "success",src:"bumral.png" },
+                    { name: "Hardik Pandya", age: 30, type: "All-rounder", dob: "11 Oct 1993", strikeRate: 145.0, matches: 70, jersey: 33, best: "91* vs Aus", color: "warning",src:"hardik.jpg" },
+                    { name: "KL Rahul", age: 31, type: "Batsman", dob: "18 Apr 1992", strikeRate: 138.5, matches: 75, jersey: 1, best: "110* vs WI", color: "info",src:"klrahul.jpg" },
+                    { name: "Ravindra Jadeja", age: 34, type: "All-rounder", dob: "6 Dec 1988", strikeRate: 120.3, matches: 90, jersey: 8, best: "66* & 4/29 vs NZ", color: "secondary",src:"jadega.jpg" },
+                    { name: "Shubman Gill", age: 24, type: "Batsman", dob: "8 Sep 1999", strikeRate: 132.7, matches: 40, jersey: 77, best: "208 vs NZ", color: "dark",src:"shubhman.jpg" },
+                    { name: "Mohammed Shami", age: 33, type: "Bowler", dob: "3 Sep 1990", strikeRate: 85.0, matches: 55, jersey: 11, best: "5/69 vs Eng", color: "danger",src:"shami.webp" },
+                    { name: "Surya Kumar Yadav", age: 33, type: "Batsman", dob: "14 Sep 1990", strikeRate: 175.8, matches: 50, jersey: 63, best: "117 vs Eng", color: "primary",src:"surya.jpg" },
+                    { name: "Yuzvendra Chahal", age: 33, type: "Bowler", dob: "23 Jul 1990", strikeRate: 80.0, matches: 65, jersey: 3, best: "6/25 vs Eng", color: "success",src:"chahal.jpg" },
+                    { name: "Ishan Kishan", age: 25, type: "Batsman", dob: "18 Jul 1998", strikeRate: 145.4, matches: 45, jersey: 23, best: "210 vs BAN", color: "warning",src:"chahal.webp" },
+                ];
+
+                players.forEach((p, index) => {
+                    document.write(`
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="card player-card border-${p.color}">
+                            <img src="${p.src}" class="card-img-top" alt="${p.name}">
+                            <div class="card-body">
+                                <h5 class="card-title">${p.name}</h5>
+                                <p class="mb-1"><strong>Age:</strong> ${p.age}</p>
+                                <p><strong>Type:</strong> ${p.type}</p>
+                                <button class="btn btn-${p.color}" data-bs-toggle="modal" data-bs-target="#playerModal${index}">View Stats</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="playerModal${index}" tabindex="-1" aria-labelledby="playerModalLabel${index}" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content" style="background: linear-gradient(135deg, #e0f7fa, #f1f8e9); border: 2px solid ${p.color};">
+                                <div class="modal-header bg-${p.color} text-white">
+                                    <h5 class="modal-title" id="playerModalLabel${index}">${p.name} - Player Stats</h5>
+                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row align-items-center">
+                                        <div class="col-md-5 text-center">
+                                            <img src="https://via.placeholder.com/200" class="img-fluid rounded shadow mb-3 border border-3 border-${p.color}" alt="${p.name}">
+                                            <h6><strong>Date of Birth:</strong> ${p.dob}</h6>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <ul class="list-group shadow">
+                                                <li class="list-group-item bg-light d-flex justify-content-between"><strong>Strike Rate:</strong> <span class="text-success">${p.strikeRate}</span></li>
+                                                <li class="list-group-item d-flex justify-content-between"><strong>Matches Played:</strong> <span class="text-success">${p.matches}</span></li>
+                                                <li class="list-group-item bg-light d-flex justify-content-between"><strong>Jersey Number:</strong> <span class="text-success">${p.jersey}</span></li>
+                                                <li class="list-group-item d-flex justify-content-between"><strong>Best Performance:</strong> <span class="text-success">${p.best}</span></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    `);
+                });
+            </script>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
